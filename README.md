@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# 词汇寻宝记 (Vocabulary Treasure Hunt)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一款基于React + TypeScript开发的英语学习游戏，通过地图探索和PK对战的方式让学习变得更有趣。
 
-Currently, two official plugins are available:
+## 🎮 游戏特色
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 核心玩法
+- **50×50大地图探索**：无缝滚动的大地图，支持触摸友好操作
+- **英语词汇PK对战**：10道题100秒倒计时，与AI对手实时竞技
+- **领土占领机制**：答题获胜占领地图格子，成为地图大领主
+- **多样化宝藏系统**：40%概率发现宝藏，包含金币、道具等奖励
 
-## React Compiler
+### AI对手系统
+- **四级难度AI**：初学者(45%)、进阶(65%)、高手(80%)、学霸(92%)准确率
+- **真实答题行为**：独立计时、连续答题、智能恢复机制
+- **多语言姓名**：支持中文、英文、日韩等多种语言的真实姓名
+- **自然化交互**：题目出现立即思考，不等待用户，模拟真实对战
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 技术特性
+- **React 18 + TypeScript**：现代化前端架构，类型安全
+- **Zustand状态管理**：轻量级状态管理，性能优异
+- **零滚动响应式设计**：所有内容单屏显示，适配各种设备
+- **绝对定位地图系统**：44×44px触摸友好格子，完美正方形容器
 
-## Expanding the ESLint configuration
+## 🚀 快速开始
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 前端
+```bash
+# 安装依赖
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 启动开发服务器
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 构建生产版本
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 后端 (Node.js API)
+```bash
+# 进入后端目录
+cd vocab-treasure-hunt-backend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 安装依赖
+npm install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 启动后端服务
+npm start
 ```
+
+## 🎯 游戏玩法
+
+1. **选择年级**：根据当前英语水平选择适合的年级
+2. **探索地图**：点击地图格子探索宝藏和道具
+3. **触发PK对战**：发现宝藏后开始答题挑战
+4. **占领领土**：答题获胜后占领地图格子
+5. **成为领主**：占领更多领土，成为地图大领主
+
+## 🏗️ 技术架构
+
+- **前端框架**：React 18 + TypeScript + Vite
+- **状态管理**：Zustand
+- **样式系统**：CSS + 视口单位响应式设计
+- **后端API**：Node.js + Express
+- **地图系统**：绝对定位 + 滚动容器
+- **AI逻辑**：基于难度配置的智能答题系统
+
+## 📱 设备兼容性
+
+- ✅ 移动端完美适配（44×44px最小触摸目标）
+- ✅ 平板设备优化
+- ✅ 桌面浏览器支持
+- ✅ iOS Safari优化
+- ✅ Android Chrome优化
+
+## 🎨 界面设计
+
+- **零滚动设计**：所有内容在单屏内完全显示
+- **响应式布局**：自动适配不同屏幕尺寸
+- **Q风格美学**：轻松愉快的视觉体验
+- **流畅动画**：优雅的过渡效果和微交互
+
+---
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
