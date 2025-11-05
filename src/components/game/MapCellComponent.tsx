@@ -1,5 +1,7 @@
 import React from 'react';
 import type { MapCell } from '../../types/game';
+import { useGameStore } from '../../hooks/useGameStore';
+import PlayerFlag from './PlayerFlag';
 
 interface MapCellComponentProps {
   cell: MapCell;
@@ -12,6 +14,8 @@ const MapCellComponent: React.FC<MapCellComponentProps> = ({
   onClick, 
   disabled = false 
 }) => {
+  const { playerState } = useGameStore();
+
   const getCellContent = () => {
     if (cell.status === 'unexplored') {
       return (
@@ -52,8 +56,8 @@ const MapCellComponent: React.FC<MapCellComponentProps> = ({
 
     if (cell.status === 'owned') {
       return (
-        <div className="flex items-center justify-center h-full text-white">
-          <span className="cell-icon">🚩</span>
+        <div className="flex items-center justify-center h-full">
+          <PlayerFlag emblem={playerState.emblem} size="small" />
         </div>
       );
     }

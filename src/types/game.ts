@@ -8,7 +8,7 @@ export interface GameState {
   mapGrid: MapCell[][];
   playerState: PlayerState;
   quizState: QuizState | null;
-  gameState: 'home' | 'map' | 'quiz' | 'result';
+  gameState: 'setup' | 'home' | 'map' | 'quiz' | 'result';
 }
 
 export interface MapCell {
@@ -29,11 +29,33 @@ export interface CellContent {
 export interface PlayerState {
   id: string;
   name: string;
+  nickname: string; // 用户自定义昵称
+  emblem: PlayerEmblem; // 玩家徽章
   energy: number;
   maxEnergy: number;
   territory: number;
   coins: number;
   grade: Grade;
+}
+
+export interface PlayerEmblem {
+  frame: string; // 外框样式
+  icon: string; // 核心徽章图案
+  color: string; // 主要颜色
+  secondaryColor: string; // 次要颜色
+}
+
+// 徽章外框样式
+export type EmblemFrame = 'classic' | 'modern' | 'ornate' | 'minimal' | 'shield';
+
+// 徽章核心图案
+export type EmblemIcon = 'star' | 'crown' | 'heart' | 'lightning' | 'fire' | 'shield' | 'dragon' | 'phoenix' | 'tiger' | 'eagle';
+
+// 预设颜色方案
+export interface ColorScheme {
+  primary: string;
+  secondary: string;
+  name: string;
 }
 
 export interface QuizState {

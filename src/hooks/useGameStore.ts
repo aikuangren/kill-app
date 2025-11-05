@@ -137,11 +137,23 @@ interface GameStore extends GameState {
   updateLeaderboard: () => void;
   returnToMap: () => void;
   resetGame: () => void;
+  // 新增：个性化设置相关
+  setPlayerNickname: (nickname: string) => void;
+  setPlayerEmblem: (emblem: import('../types/game').PlayerEmblem) => void;
+  startGame: () => void;
+  checkSetupComplete: () => boolean;
 }
 
 const initialPlayerState: PlayerState = {
   id: 'player-1',
   name: '玩家',
+  nickname: '', // 用户需要设置的昵称
+  emblem: {
+    frame: 'classic',
+    icon: 'star',
+    color: '#4ECDC4',
+    secondaryColor: '#44A3AA',
+  },
   energy: 10,
   maxEnergy: 10,
   territory: 0,
@@ -198,7 +210,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   mapGrid: [],
   playerState: initialPlayerState,
   quizState: null,
-  gameState: 'home',
+  gameState: 'setup', // 游戏从设置页面开始
 
   // Actions
   setGrade: (grade: Grade) => {
@@ -521,12 +533,55 @@ export const useGameStore = create<GameStore>((set, get) => ({
     }));
   },
 
+  // 新增：个性化设置相关actions
+  setPlayerNickname: (nickname: string) => {
+    set((state) => ({
+      ...state,
+      playerState: {
+        ...state.playerState,
+        nickname: nickname.trim(),
+        name: nickname.trim() || '玩家', // 如果没有昵称，使用默认名称
+      },
+    }));
+  },
+
+  setPlayerEmblem: (emblem) => {
+    set((state) => ({
+      ...state,
+      playerState: {
+        ...state.playerState,
+        emblem: emblem,
+      },
+    }));
+  },
+
+  startGame: () => {
+    // 检查设置是否完成
+    const currentState = get();
+    if (!currentState.playerState.nickname || currentState.playerState.nickname.trim().length < 2) {
+      console.warn('昵称未设置或过短');
+      return;
+    }
+
+    // 初始化地图并跳转到首页
+    currentState.initializeMap(50);
+    set((state) => ({
+      ...state,
+      gameState: 'home',
+    }));
+  },
+
+  checkSetupComplete: () => {
+    const state = get();
+    return state.playerState.nickname.trim().length >= 2;
+  },
+
   resetGame: () => {
     set({
       mapGrid: [],
       playerState: initialPlayerState,
       quizState: null,
-      gameState: 'home',
+      gameState: 'setup', // 重置到设置页面
     });
   },
 }));

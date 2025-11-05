@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGameStore } from './hooks/useGameStore';
+import SetupPage from './pages/SetupPage';
 import HomePage from './pages/HomePage';
 import GameMap from './components/game/GameMap';
 import QuizGame from './components/game/QuizGame';
@@ -9,6 +10,8 @@ function App() {
 
   const renderCurrentPage = () => {
     switch (gameState) {
+      case 'setup':
+        return <SetupPage />;
       case 'home':
         return <HomePage />;
       case 'map':
@@ -16,7 +19,7 @@ function App() {
       case 'quiz':
         return <QuizGame />;
       default:
-        return <HomePage />;
+        return <SetupPage />;
     }
   };
 
