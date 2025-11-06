@@ -1,7 +1,7 @@
 import React from 'react';
 import type { MapCell } from '../../types/game';
 import { useGameStore } from '../../hooks/useGameStore';
-import PlayerFlag from './PlayerFlag';
+import PlayerIconComponent from './PlayerIconComponent';
 
 interface MapCellComponentProps {
   cell: MapCell;
@@ -57,7 +57,7 @@ const MapCellComponent: React.FC<MapCellComponentProps> = ({
     if (cell.status === 'owned') {
       return (
         <div className="flex items-center justify-center h-full">
-          <PlayerFlag emblem={playerState.emblem} size="small" />
+          <PlayerIconComponent icon={playerState.icon} size="full" />
         </div>
       );
     }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useGameStore } from './hooks/useGameStore';
 import SetupPage from './pages/SetupPage';
 import HomePage from './pages/HomePage';
